@@ -493,12 +493,4 @@ body.active-case .cases {
     pointer-events: none
 }
 
-.navbar__menu-list {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    align-items: center;
-    gap: clamp(16px,1vw,26px);
-    z-index: 1000;
-}
+

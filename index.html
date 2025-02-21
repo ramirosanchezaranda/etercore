@@ -82,9 +82,9 @@
                 </style>
             </div>
             <!-- Encabezado principal de la página -->
-            <header class="navbar">
+    <header class="navbar">
                 <!-- Contenedor principal de la barra de navegación -->
-                <div data-w-id="f72ea14b-1c2b-b66e-dbfa-efee777e15c8" class="navbar__conteiner container">
+        <div data-w-id="f72ea14b-1c2b-b66e-dbfa-efee777e15c8" class="navbar__conteiner container" >
                     <!-- Contenedor del logotipo -->
                     <div class="navbar__box">
                         <!-- Enlace del logotipo que lleva a la página principal -->
@@ -95,7 +95,6 @@
                             </div>
                         </a>
                     </div>
-                </div>
                 <!-- Sección de botones para cambiar la vista de trabajos (Lista/Cuadrícula) -->
                 <div class="navbar__view">
                     <a href="#works" class="navbar__view-btn text100">List</a>
@@ -109,8 +108,8 @@
                     <div data-interaction="text-hover" class="navbar__close-btn-text text100">Close</div>
                 </div>
                 <!-- Menú principal de navegación con enlaces internos -->
-                <div class="navbar__menu" style="visibility: visible; width: 0px;">
-                    <nav class="navbar__menu-list">
+                <div class="navbar__menu">
+                    <nav class="navbar__menu-list" style="visibility: visible; width: 100%; translate: none; rotate: none; scale: none; filter: blur(0px); opacity: 1; transform: translate(0px, 0px);">
                         <a data-interaction="text-hover" href="/" aria-current="page" class="nav-item text200 w--current">
                             <span class="nav-item__value">Inicio</span>
                         </a>
@@ -134,6 +133,7 @@
                     <div class="navbar__menu-overlay"></div>
                 </div>
             </div>
+        </div>
         </header>
         <!-- Inicio del contenido principal -->
         <main class="main">
@@ -160,13 +160,96 @@
                 <!-- Sistema de capas para efectos visuales con imágenes optimizadas y shaders -->
                 <div class="hero__bg">
                     <div class="hero__bg-plane">
-                        <img class="hero__bg-plane-img" src="images/impactoCristalmobile.png" data-sampler="texture1" alt="eterCore-Diseño visual, diseño de productos y experiencias de usuario." sizes="100vw" loading="lazy" srcset="images/impactoCristalmobile.png 500w, images/impactoCristalmobile.png 800w, images/impactoCristalmobile.png 1080w, images/impactoCristalmobile.png 1600w, images/impactoCristalmobile.png 2000w, images/impactoCristalmobile.png 2600w, images/impactoCristalmobile.png 3200w, images/impactoCristalmobile.png 3840w"/>
-                        <img class="hero__bg-plane-img" src="images/impactoCristalmobile.png" data-sampler="texture0" alt="" sizes="100vw" loading="lazy" srcset="images/impactoCristalmobile.png 500w, images/impactoCristalmobile.png 800w, images/impactoCristalmobile.png 1080w, images/impactoCristalmobile.png 1600w, images/impactoCristalmobile.png 2000w, images/impactoCristalmobile.png 2600w, images/impactoCristalmobile.png 3200w, images/impactoCristalmobile.png 3840w"/>
+                        <div class="container">
+                            <div class="hero__bg-plane">
+                                <div class="slider-container">
+                                    <!-- Contenedor del slider -->
+                                    <ul class="slider">
+                                        <li class="slider-item active">
+                                            <div class="grid vertical">
+                                                <div class="column-xs-12 column-md-2 hide-mobile">
+                                                </div>
+                                                <div class="column-xs-12 column-md-10">
+                                                    <div class="image-holder">
+                                                        <img src="https://assets.codepen.io/1159990/tokyo.jpg" alt="Tokyo City">
+                                                    </div>
+                                                    <div class="grid">
+                                                        <div class="column-xs-12 column-md-9">
+                                                            <p class="description">Tokyo, Japan's busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="slider-item">
+                                            <div class="grid vertical">
+                                                <div class="column-xs-12 column-md-2 hide-mobile">
+                                                </div>
+                                                <div class="column-xs-12 column-md-10">
+                                                    <div class="image-holder">
+                                                        <img src="https://assets.codepen.io/1159990/kyoto.jpg" alt="Kyoto City">
+                                                    </div>
+                                                    <div class="grid">
+                                                        <div class="column-xs-12 column-md-9">
+                                                            <p class="description">Kyoto is famous for its numerous classical Buddhist temples, gardens, imperial palaces, Shinto shrines and traditional wooden houses.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="slider-item">
+                                            <div class="grid vertical">
+                                                <div class="column-xs-12 column-md-2 hide-mobile">
+                                                </div>
+                                                <div class="column-xs-12 column-md-10">
+                                                    <div class="image-holder">
+                                                        <img src="https://assets.codepen.io/1159990/osaka.jpg" alt="Osaka City">
+                                                    </div>
+                                                    <div class="grid">
+                                                        <div class="column-xs-12 column-md-9">
+                                                            <p class="description">Osaka is a large port city and commercial center known for its modern architecture, nightlife and hearty street food.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="slider-item">
+                                            <div class="grid vertical">
+                                                <div class="column-xs-12 column-md-2 hide-mobile">
+                                                </div>
+                                                <div class="column-xs-12 column-md-10">
+                                                    <div class="image-holder">
+                                                        <img src="https://assets.codepen.io/1159990/hokkaido.jpg" alt="Hokkaido Region">
+                                                    </div>
+                                                    <div class="grid">
+                                                        <div class="column-xs-12 column-md-9">
+                                                            <p class="description">Hokkaido, the northernmost of Japan's main islands, is known for its volcanoes, natural hot springs ("onsen") and ski areas.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Elementos para efectos de máscara y canvas que crean la interactividad del fondo -->
                         <img data-sampler="map" loading="lazy" alt="" src="https://cdn.prod.website-files.com/671753eece2bc4f91eced383/6731b57263661a8a98ff9079_shader.png" class="hero__bg-plane-map"/>
                         <div class="hero__bg-plane-mask"></div>
+                        <div class="hero__bg-canvas"></div>
+                        <div class="grid">
+                            <div class="column-xs-12">
+                                <div class="controls">
+                                    <button class="previous">
+                                        <span class="icon arrow-left" aria-hidden="true"></span>
+                                    </button>
+                                    <button class="next">
+                                        <span class="icon arrow-right" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="hero__bg-canvas"></div>
                 </div>
             </section>
             <section class="preview">
@@ -1095,6 +1178,118 @@
                     </div>
                 </div>
             </div>
+        </footer>
+        <div class="loader">
+            <div class="loader__logo">
+                <div class="loader__logo-overlay"></div>
+                <div class="loader__logo-svg w-embed">
+                    <img src="images/ec-logosimple.png" class="loader-svg-icon" alt="eterCore Logo" width="100%" height="100%">
+                </div>
+            </div>
+            <div class="loader__indicator w-embed">
+                <div class="preloader">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                    <span class="line line-3"></span>
+                    <span class="line line-4"></span>
+                    <span class="line line-5"></span>
+                    <span class="line line-6"></span>
+                    <span class="line line-7"></span>
+                    <span class="line line-8"></span>
+                    <span class="line line-9"></span>
+                </div>
+                <!-- Componente de loader personalizado:
+                     - Logo SVG animado como indicador principal
+                     - Animación de líneas con efecto de onda
+                     - Estilos CSS integrados para la animación
+                     - Delays escalonados para crear efecto fluido
+                     - Sistema de precarga para optimizar la experiencia de usuario -->
+                <style>
+                    .preloader .line {
+                        width: 1px;
+                        height: 12px;
+                        background: #24468a;
+                        margin: 0 1px;
+                        display: inline-block;
+                        animation: opacity 1000ms infinite ease-in-out;
+                    }
+
+                    .preloader .line-1 {
+                        animation-delay: 800ms;
+                    }
+
+                    .preloader .line-2 {
+                        animation-delay: 600ms;
+                    }
+
+                    .preloader .line-3 {
+                        animation-delay: 400ms;
+                    }
+
+                    .preloader .line-4 {
+                        animation-delay: 200ms;
+                    }
+
+                    .preloader .line-6 {
+                        animation-delay: 200ms;
+                    }
+
+                    .preloader .line-7 {
+                        animation-delay: 400ms;
+                    }
+
+                    .preloader .line-8 {
+                        animation-delay: 600ms;
+                    }
+
+                    .preloader .line-9 {
+                        animation-delay: 800ms;
+                    }
+
+                    /* Sistema de transiciones de vista:
+                     * - Componente para manejar transiciones entre páginas
+                     * - Incluye filtro y canvas para efectos visuales
+                     * - Integrado con scripts de Webflow y personalizados
+                     * - Optimizado para rendimiento y fluidez
+                     */
+                
+                                        
+
+                    @keyframes opacity {
+                        0% {
+                            opacity: 1;
+                            height: 15px;
+                        }
+
+                        50% {
+                            opacity: 0;
+                            height: 12px;
+                        }
+
+                        100% {
+                            opacity: 1;
+                            height: 15px;
+                        }
+                    }
+                </style>
+            </div>
+        </div>
+        <!-- Scripts y recursos externos:
+             - jQuery 3.5.1 con verificación de integridad
+             - Scripts de Webflow para funcionalidades del sitio
+             - Configuración de viewport para dispositivos móviles
+             - Módulo personalizado alojado en Vercel para funcionalidades adicionales -->
+        <div class="view-transition">
+            <div class="filter"></div>
+            <div class="canvas"></div>
+        </div>
+        <script src="jquery.3.5.1.js" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="etercore.js" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script type="module" src="index.js"></script>
+    </body>
+</html>
+
         </footer>
         <div class="loader">
             <div class="loader__logo">

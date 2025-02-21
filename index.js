@@ -15635,3 +15635,115 @@ class Mp {
     }
 }
 new Mp;
+// Add this code at the end of your index.js file or in a script section
+document.addEventListener('DOMContentLoaded', function() {
+    // Debugging: Log all elements to help diagnose selector issues
+    console.log('Slider Container:', document.querySelector('.hero .slider'));
+    console.log('All Controls:', document.querySelectorAll('.controls'));
+    console.log('Next Button:', document.querySelector('.hero .controls .next'));
+    console.log('Previous Button:', document.querySelector('.hero .controls .previous'));
+
+    // Select all slider items and image holders
+    const sliderContainer = document.querySelector('.hero .slider');
+    const items = sliderContainer ? Array.from(sliderContainer.querySelectorAll('.slider-item')) : [];
+    const imageHolders = sliderContainer ? Array.from(sliderContainer.querySelectorAll('.image-holder')) : [];
+    
+    // Try multiple selectors to find the buttons
+    const nextItem = 
+        document.querySelector('.grid .controls .next') || 
+        document.querySelector('.controls .next') || 
+        document.querySelector('.next');
+    
+    const previousItem = 
+        document.querySelector('.grid .controls .previous') || 
+        document.querySelector('.controls .previous') || 
+        document.querySelector('.previous');
+
+    const navItem = document.querySelector('a.toggle-nav');
+    const navMenu = document.querySelector('.flex-nav ul');
+
+    // Debugging: Log button selections
+    console.log('Next Button Found:', nextItem);
+    console.log('Previous Button Found:', previousItem);
+
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    // Ensure at least one item exists
+    if (items.length === 0) {
+        console.error('No slider items found!');
+        return;
+    }
+
+    // Function to show a specific item
+    function showItem(index) {
+        // Remove active class from all items
+        items.forEach(item => item.classList.remove('active'));
+        
+        // Add active class to current item
+        items[index].classList.add('active');
+        console.log(`Showing item at index ${index}`);
+    }
+
+    // Function to show next item
+    function showNextItem() {
+        currentIndex = (currentIndex + 1) % items.length;
+        showItem(currentIndex);
+    }
+
+    // Function to show previous item
+    function showPreviousItem() {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showItem(currentIndex);
+    }
+
+    // Function to start auto-sliding
+    function startAutoSlide(interval = 2000) {
+        // Clear any existing interval
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Start auto-sliding
+        autoSlideInterval = setInterval(showNextItem, interval);
+    }
+
+    // Function to stop auto-sliding
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+        }
+    }
+
+    // Add event listeners with extensive error checking
+    if (nextItem) {
+        console.log('Adding click listener to next button');
+        nextItem.addEventListener('click', (event) => {
+            console.log('Next button clicked');
+            event.preventDefault();
+            showNextItem();
+            startAutoSlide();
+        });
+    } else {
+        console.error('Next button not found!');
+    }
+
+    if (previousItem) {
+        console.log('Adding click listener to previous button');
+        previousItem.addEventListener('click', (event) => {
+            console.log('Previous button clicked');
+            event.preventDefault();
+            showPreviousItem();
+            startAutoSlide();
+        });
+    } else {
+        console.error('Previous button not found!');
+    }
+
+    // Initial setup
+    showItem(0);  // Show first item
+    startAutoSlide();  // Start auto-sliding
+
+    // Additional logging
+    console.log('Slider initialization complete');
+});

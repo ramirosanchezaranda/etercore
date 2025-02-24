@@ -4533,13 +4533,17 @@ button {
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 .marquee-wrapper {
+  overflow: hidden;
+  width: 100%; /* Adjust as needed */
   position: relative;
 }
 
 .marquee {
   display: flex;
-  gap: 30px;
-  overflow: hidden;
+  animation: scroll 18.9s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
 }
 
 .marquee-item {
@@ -4550,6 +4554,8 @@ button {
   justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
+  flex: 0 0 auto;
+  padding: 0 10px;
 }
 
 .member {
@@ -4603,29 +4609,6 @@ button {
   filter: grayscale(0);
 }
 
-.marquee-arrow {
-  position: absolute;
-  bottom: -10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #cecece;
-  border-radius: 0px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.marquee-arrow.arrow-prev {
-  left: calc(50% - 50px);
-}
-
-.marquee-arrow.arrow-next {
-  right: calc(50% - 50px);
-}
-
 @media (min-width: 850px) {
   .marquee-item {
     width: 500px;
@@ -4638,19 +4621,12 @@ button {
   .member-title {
     font-size: 1.6em;
   }
-
-  .marquee-arrow {
-    top: 50%;
-    transform: translateY(-50%);
-    width: 70px;
-    height: 70px;
+}
+@keyframes scroll {
+  0% {
+      transform: translateX(100%);
   }
-
-  .marquee-arrow.arrow-prev {
-    left: 40px;
-  }
-
-  .marquee-arrow.arrow-next {
-    right: 40px;
+  100% {
+      transform: translateX(-100%);
   }
 }

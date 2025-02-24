@@ -1,3 +1,5 @@
+
+
 var Yu = Object.defineProperty;
 var qu = (n, e, t) => e in n ? Yu(n, e, {
     enumerable: !0,
@@ -14685,14 +14687,13 @@ class Dp {
     }
     showBg(e=0) {
         M.to(S.navbar, {
-            backgroundColor: "rgba(248, 248, 248, 1)",
+            filter: "blur(0px)",
             delay: e,
             duration: .8
         })
     }
     hideBg(e=0) {
         M.to(S.navbar, {
-            backgroundColor: "rgba(248, 248, 248, 0)",
             delay: e,
             duration: .1
         })
@@ -15635,115 +15636,384 @@ class Mp {
     }
 }
 new Mp;
-// Add this code at the end of your index.js file or in a script section
 document.addEventListener('DOMContentLoaded', function() {
-    // Debugging: Log all elements to help diagnose selector issues
-    console.log('Slider Container:', document.querySelector('.hero .slider'));
-    console.log('All Controls:', document.querySelectorAll('.controls'));
-    console.log('Next Button:', document.querySelector('.hero .controls .next'));
-    console.log('Previous Button:', document.querySelector('.hero .controls .previous'));
+    // Select slider container and items with more flexible selectors
+    const sliderContainer = document.querySelector('[class*="slider-container"]');
+    if (!sliderContainer) {
+        console.error('Slider container not found! Make sure you have an element with class "slider-container"');
+        return;
+    }
 
-    // Select all slider items and image holders
-    const sliderContainer = document.querySelector('.hero .slider');
-    const items = sliderContainer ? Array.from(sliderContainer.querySelectorAll('.slider-item')) : [];
-    const imageHolders = sliderContainer ? Array.from(sliderContainer.querySelectorAll('.image-holder')) : [];
-    
-    // Try multiple selectors to find the buttons
-    const nextItem = 
-        document.querySelector('.grid .controls .next') || 
-        document.querySelector('.controls .next') || 
-        document.querySelector('.next');
-    
-    const previousItem = 
-        document.querySelector('.grid .controls .previous') || 
-        document.querySelector('.controls .previous') || 
-        document.querySelector('.previous');
+    // More flexible selector for slider items
+    const sliderItems = sliderContainer.querySelectorAll('[class*="slider-item"]');
+    if (sliderItems.length === 0) {
+        console.error('No slider items found! Make sure you have elements with class "slider-item"');
+        return;
+    }
 
-    const navItem = document.querySelector('a.toggle-nav');
-    const navMenu = document.querySelector('.flex-nav ul');
-
-    // Debugging: Log button selections
-    console.log('Next Button Found:', nextItem);
-    console.log('Previous Button Found:', previousItem);
+    // Navigation buttons with more flexible selectors
+    const nextButton = document.querySelector('[class*="next"]');
+    const prevButton = document.querySelector('[class*="previous"]');
 
     let currentIndex = 0;
     let autoSlideInterval;
 
-    // Ensure at least one item exists
-    if (items.length === 0) {
-        console.error('No slider items found!');
-        return;
-    }
-
-    // Function to show a specific item
     function showItem(index) {
-        // Remove active class from all items
-        items.forEach(item => item.classList.remove('active'));
+        // Add transition class for smooth animation
+        sliderItems.forEach(item => {
+            item.classList.remove('active');
+            item.style.opacity = '0';
+            item.style.transition = 'opacity 0.5s ease-in-out';
+        });
         
-        // Add active class to current item
-        items[index].classList.add('active');
-        console.log(`Showing item at index ${index}`);
+        // Show current item
+        sliderItems[index].classList.add('active');
+        sliderItems[index].style.opacity = '1';
     }
 
-    // Function to show next item
     function showNextItem() {
-        currentIndex = (currentIndex + 1) % items.length;
+        currentIndex = (currentIndex + 1) % sliderItems.length;
         showItem(currentIndex);
     }
 
-    // Function to show previous item
     function showPreviousItem() {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        currentIndex = (currentIndex - 1 + sliderItems.length) % sliderItems.length;
         showItem(currentIndex);
     }
 
-    // Function to start auto-sliding
-    function startAutoSlide(interval = 2000) {
-        // Clear any existing interval
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Start auto-sliding
+    function startAutoSlide(interval = 5000) {
+        stopAutoSlide(); // Clear any existing interval
         autoSlideInterval = setInterval(showNextItem, interval);
     }
 
-    // Function to stop auto-sliding
     function stopAutoSlide() {
         if (autoSlideInterval) {
             clearInterval(autoSlideInterval);
         }
     }
 
-    // Add event listeners with extensive error checking
-    if (nextItem) {
-        console.log('Adding click listener to next button');
-        nextItem.addEventListener('click', (event) => {
-            console.log('Next button clicked');
+    // Add event listeners with error checking
+    if (nextButton) {
+        nextButton.addEventListener('click', (event) => {
             event.preventDefault();
+            stopAutoSlide(); // Stop auto sliding on manual navigation
             showNextItem();
-            startAutoSlide();
+            startAutoSlide(); // Restart auto sliding
         });
-    } else {
-        console.error('Next button not found!');
     }
 
-    if (previousItem) {
-        console.log('Adding click listener to previous button');
-        previousItem.addEventListener('click', (event) => {
-            console.log('Previous button clicked');
+    if (prevButton) {
+        prevButton.addEventListener('click', (event) => {
             event.preventDefault();
+            stopAutoSlide(); // Stop auto sliding on manual navigation
             showPreviousItem();
-            startAutoSlide();
+            startAutoSlide(); // Restart auto sliding
         });
-    } else {
-        console.error('Previous button not found!');
     }
+
+    // Add hover pause functionality
+    sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+    sliderContainer.addEventListener('mouseleave', () => startAutoSlide());
 
     // Initial setup
-    showItem(0);  // Show first item
-    startAutoSlide();  // Start auto-sliding
-
-    // Additional logging
-    console.log('Slider initialization complete');
+    showItem(0);
+    startAutoSlide();
 });
+const marqueeItems = document.querySelectorAll(".marquee-item");
+const btnPrev = document.querySelector(".arrow-prev");
+const btnNext = document.querySelector(".arrow-next");
+const conf = { duration: 1, ease: "power.inOut" };
+
+window.addEventListener("load", function () {
+  const loop = horizontalLoop(marqueeItems, {
+    repeat: -1,
+    paddingRight: 30,
+    speed: 0.2,
+    draggable: true
+  });
+
+  marqueeItems.forEach(function (item) {
+    item.addEventListener("mouseenter", () => loop.pause());
+    item.addEventListener("mouseleave", () => loop.play());
+  });
+
+  btnPrev.addEventListener("click", () => loop.previous(conf));
+  btnNext.addEventListener("click", () => loop.next(conf));
+});
+
+/*
+This helper function makes a group of elements animate along the x-axis in a seamless, responsive loop.
+
+Features:
+ - Uses xPercent so that even if the widths change (like if the window gets resized), it should still work in most cases.
+ - When each item animates to the left or right enough, it will loop back to the other side
+ - Optionally pass in a config object with values like draggable: true, center: true, speed (default: 1, which travels at roughly 100 pixels per second), paused (boolean), repeat, reversed, and paddingRight.
+ - The returned timeline will have the following methods added to it:
+   - next() - animates to the next element using a timeline.tweenTo() which it returns. You can pass in a vars object to control duration, easing, etc.
+   - previous() - animates to the previous element using a timeline.tweenTo() which it returns. You can pass in a vars object to control duration, easing, etc.
+   - toIndex() - pass in a zero-based index value of the element that it should animate to, and optionally pass in a vars object to control duration, easing, etc. Always goes in the shortest direction
+   - current() - returns the current index (if an animation is in-progress, it reflects the final index)
+   - times - an Array of the times on the timeline where each element hits the "starting" spot.
+ */
+function horizontalLoop(items, config) {
+  let timeline;
+  items = gsap.utils.toArray(items);
+  config = config || {};
+  gsap.context(() => {
+    // use a context so that if this is called from within another context or a gsap.matchMedia(), we can perform proper cleanup like the "resize" event handler on the window
+    let onChange = config.onChange,
+      lastIndex = 0,
+      tl = gsap.timeline({
+        repeat: config.repeat,
+        onUpdate:
+          onChange &&
+          function () {
+            let i = tl.closestIndex();
+            if (lastIndex !== i) {
+              lastIndex = i;
+              onChange(items[i], i);
+            }
+          },
+        paused: config.paused,
+        defaults: { ease: "none" },
+        onReverseComplete: () =>
+          tl.totalTime(tl.rawTime() + tl.duration() * 100)
+      }),
+      length = items.length,
+      startX = items[0].offsetLeft,
+      times = [],
+      widths = [],
+      spaceBefore = [],
+      xPercents = [],
+      curIndex = 0,
+      indexIsDirty = false,
+      center = config.center,
+      pixelsPerSecond = (config.speed || 1) * 100,
+      snap =
+        config.snap === false ? (v) => v : gsap.utils.snap(config.snap || 1), // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
+      timeOffset = 0,
+      container =
+        center === true
+          ? items[0].parentNode
+          : gsap.utils.toArray(center)[0] || items[0].parentNode,
+      totalWidth,
+      getTotalWidth = () =>
+        items[length - 1].offsetLeft +
+        (xPercents[length - 1] / 100) * widths[length - 1] -
+        startX +
+        spaceBefore[0] +
+        items[length - 1].offsetWidth *
+          gsap.getProperty(items[length - 1], "scaleX") +
+        (parseFloat(config.paddingRight) || 0),
+      populateWidths = () => {
+        let b1 = container.getBoundingClientRect(),
+          b2;
+        items.forEach((el, i) => {
+          widths[i] = parseFloat(gsap.getProperty(el, "width", "px"));
+          xPercents[i] = snap(
+            (parseFloat(gsap.getProperty(el, "x", "px")) / widths[i]) * 100 +
+              gsap.getProperty(el, "xPercent")
+          );
+          b2 = el.getBoundingClientRect();
+          spaceBefore[i] = b2.left - (i ? b1.right : b1.left);
+          b1 = b2;
+        });
+        gsap.set(items, {
+          // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
+          xPercent: (i) => xPercents[i]
+        });
+        totalWidth = getTotalWidth();
+      },
+      timeWrap,
+      populateOffsets = () => {
+        timeOffset = center
+          ? (tl.duration() * (container.offsetWidth / 2)) / totalWidth
+          : 0;
+        center &&
+          times.forEach((t, i) => {
+            times[i] = timeWrap(
+              tl.labels["label" + i] +
+                (tl.duration() * widths[i]) / 2 / totalWidth -
+                timeOffset
+            );
+          });
+      },
+      getClosest = (values, value, wrap) => {
+        let i = values.length,
+          closest = 1e10,
+          index = 0,
+          d;
+        while (i--) {
+          d = Math.abs(values[i] - value);
+          if (d > wrap / 2) {
+            d = wrap - d;
+          }
+          if (d < closest) {
+            closest = d;
+            index = i;
+          }
+        }
+        return index;
+      },
+      populateTimeline = () => {
+        let i, item, curX, distanceToStart, distanceToLoop;
+        tl.clear();
+        for (i = 0; i < length; i++) {
+          item = items[i];
+          curX = (xPercents[i] / 100) * widths[i];
+          distanceToStart = item.offsetLeft + curX - startX + spaceBefore[0];
+          distanceToLoop =
+            distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
+          tl.to(
+            item,
+            {
+              xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
+              duration: distanceToLoop / pixelsPerSecond
+            },
+            0
+          )
+            .fromTo(
+              item,
+              {
+                xPercent: snap(
+                  ((curX - distanceToLoop + totalWidth) / widths[i]) * 100
+                )
+              },
+              {
+                xPercent: xPercents[i],
+                duration:
+                  (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond,
+                immediateRender: false
+              },
+              distanceToLoop / pixelsPerSecond
+            )
+            .add("label" + i, distanceToStart / pixelsPerSecond);
+          times[i] = distanceToStart / pixelsPerSecond;
+        }
+        timeWrap = gsap.utils.wrap(0, tl.duration());
+      },
+      refresh = (deep) => {
+        let progress = tl.progress();
+        tl.progress(0, true);
+        populateWidths();
+        deep && populateTimeline();
+        populateOffsets();
+        deep && tl.draggable
+          ? tl.time(times[curIndex], true)
+          : tl.progress(progress, true);
+      },
+      onResize = () => refresh(true),
+      proxy;
+    gsap.set(items, { x: 0 });
+    populateWidths();
+    populateTimeline();
+    populateOffsets();
+    window.addEventListener("resize", onResize);
+    function toIndex(index, vars) {
+      vars = vars || {};
+      Math.abs(index - curIndex) > length / 2 &&
+        (index += index > curIndex ? -length : length); // always go in the shortest direction
+      let newIndex = gsap.utils.wrap(0, length, index),
+        time = times[newIndex];
+      if (time > tl.time() !== index > curIndex && index !== curIndex) {
+        // if we're wrapping the timeline's playhead, make the proper adjustments
+        time += tl.duration() * (index > curIndex ? 1 : -1);
+      }
+      if (time < 0 || time > tl.duration()) {
+        vars.modifiers = { time: timeWrap };
+      }
+      curIndex = newIndex;
+      vars.overwrite = true;
+      gsap.killTweensOf(proxy);
+      return vars.duration === 0
+        ? tl.time(timeWrap(time))
+        : tl.tweenTo(time, vars);
+    }
+    tl.toIndex = (index, vars) => toIndex(index, vars);
+    tl.closestIndex = (setCurrent) => {
+      let index = getClosest(times, tl.time(), tl.duration());
+      if (setCurrent) {
+        curIndex = index;
+        indexIsDirty = false;
+      }
+      return index;
+    };
+    tl.current = () => (indexIsDirty ? tl.closestIndex(true) : curIndex);
+    tl.next = (vars) => toIndex(tl.current() + 1, vars);
+    tl.previous = (vars) => toIndex(tl.current() - 1, vars);
+    tl.times = times;
+    tl.progress(1, true).progress(0, true); // pre-render for performance
+    if (config.reversed) {
+      tl.vars.onReverseComplete();
+      tl.reverse();
+    }
+    if (config.draggable && typeof Draggable === "function") {
+      proxy = document.createElement("div");
+      let wrap = gsap.utils.wrap(0, 1),
+        ratio,
+        startProgress,
+        draggable,
+        dragSnap,
+        lastSnap,
+        initChangeX,
+        wasPlaying,
+        align = () =>
+          tl.progress(
+            wrap(startProgress + (draggable.startX - draggable.x) * ratio)
+          ),
+        syncIndex = () => tl.closestIndex(true);
+      typeof InertiaPlugin === "undefined" &&
+        console.warn(
+          "InertiaPlugin required for momentum-based scrolling and snapping. https://greensock.com/club"
+        );
+      draggable = Draggable.create(proxy, {
+        trigger: items[0].parentNode,
+        type: "x",
+        onPressInit() {
+          let x = this.x;
+          gsap.killTweensOf(tl);
+          wasPlaying = !tl.paused();
+          tl.pause();
+          startProgress = tl.progress();
+          refresh();
+          ratio = 1 / totalWidth;
+          initChangeX = startProgress / -ratio - x;
+          gsap.set(proxy, { x: startProgress / -ratio });
+        },
+        onDrag: align,
+        onThrowUpdate: align,
+        overshootTolerance: 0,
+        inertia: true,
+        snap(value) {
+          //note: if the user presses and releases in the middle of a throw, due to the sudden correction of proxy.x in the onPressInit(), the velocity could be very large, throwing off the snap. So sense that condition and adjust for it. We also need to set overshootTolerance to 0 to prevent the inertia from causing it to shoot past and come back
+          if (Math.abs(startProgress / -ratio - this.x) < 10) {
+            return lastSnap + initChangeX;
+          }
+          let time = -(value * ratio) * tl.duration(),
+            wrappedTime = timeWrap(time),
+            snapTime = times[getClosest(times, wrappedTime, tl.duration())],
+            dif = snapTime - wrappedTime;
+          Math.abs(dif) > tl.duration() / 2 &&
+            (dif += dif < 0 ? tl.duration() : -tl.duration());
+          lastSnap = (time + dif) / tl.duration() / -ratio;
+          return lastSnap;
+        },
+        onRelease() {
+          syncIndex();
+          draggable.isThrowing && (indexIsDirty = true);
+        },
+        onThrowComplete: () => {
+          syncIndex();
+          wasPlaying && tl.play();
+        }
+      })[0];
+      tl.draggable = draggable;
+    }
+    tl.closestIndex(true);
+    lastIndex = curIndex;
+    onChange && onChange(items[curIndex], curIndex);
+    timeline = tl;
+    return () => window.removeEventListener("resize", onResize); // cleanup
+  });
+  return timeline;
+}

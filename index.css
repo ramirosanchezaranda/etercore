@@ -327,9 +327,8 @@ html.lenis,html.lenis body {
 }
 
 .case-grid {
-    top: 0;
     position: fixed;
-    z-index: 100;
+    z-index: 0;
     height: 0vh;
     overflow: scroll;
     scrollbar-width: none!important;

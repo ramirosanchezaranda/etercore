@@ -2055,19 +2055,19 @@ textarea.w-input,textarea.w-select {
 }
 
 :root {
-  --color--bg-200: #f8f8f8;
-  --color--primary-100: #292b34;
-  --color--txt-900: #292b34;
+  --color--bg-200: #00070c;
+  --color--primary-100: #d4e1ff;
+  --color--txt-900: #7ea1ff;
   --size--gap-200: 24px;
   --color--txt-300: #a4a4a4;
-  --color--txt-200: #f9f6f0;
+  --color--txt-200: #2a3642;
   --size--p-100: 16px;
-  --color--txt-80: #fffc;
-  --color--txt-60: #fff6;
+  --color--txt-80: rgb(76, 80, 96);
+  --color--txt-60: rgba(35, 37, 49, 0.4);
   --size--p-200: 24px;
-  --color--stroke-100: #ffffff52;
-  --color--stroke-200: #fff;
-  --color--text--90\<deleted\|variable-9c12d270-9fad-8792-2f28-dde44c09c851\>: #ffffffe6;
+  --color--stroke-100: #28344e52;
+  --color--stroke-200: #8491ff;
+  --color--text--90\<deleted\|variable-9c12d270-9fad-8792-2f28-dde44c09c851\>: #dde5ffe6;
   --color--overlay100: #292b3499;
   --color--overlay50: #292b3433;
   --size--p-180: 20px

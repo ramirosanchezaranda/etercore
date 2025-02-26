@@ -4474,7 +4474,7 @@ button {
 
 .marquee {
   display: flex;
-  animation: scroll 18.9s linear infinite;
+  animation: scroll 19.9s linear infinite;
 }
 .marquee:hover {
   animation-play-state: paused;

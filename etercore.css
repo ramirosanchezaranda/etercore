@@ -4409,10 +4409,10 @@ img {
     pointer-events: auto !important;
   }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300px) {
   .controls button {
     position: relative;
-    margin-bottom: 210%;
+    margin-bottom: 310%;
     z-index: 90000;
     background: rgba(34, 34, 34, 0.7);
     border: none;
@@ -4431,7 +4431,7 @@ img {
   }
 }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 500px) {
     button {
       position: relative;
       z-index: 50000;
@@ -4463,7 +4463,7 @@ img {
     
     .controls button {
       position: relative;
-      margin-bottom: 200%;
+      margin-top: 100%;
       z-index: 90000;
       background: rgba(34, 34, 34, 0.7);
       border: none;
@@ -4521,10 +4521,10 @@ img {
   transform-origin: 100% 50%;
   animation: revealRight 1s cubic-bezier(0.23,1,0.75,1) forwards;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 700px) {
   .controls button {
     position: relative;
-    margin-bottom: 410%;
+    margin-bottom: 500%;
     z-index: 90000;
     background: rgba(34, 34, 34, 0.7);
     border: none;
@@ -4624,7 +4624,7 @@ img {
 
 @media screen and (max-width: 767px)  {
   .hero .image-holder {
-    margin-top: 150px;
+    margin-top: 100px;
     max-width: 100%;
     max-height: 100vh;
     display: flex;

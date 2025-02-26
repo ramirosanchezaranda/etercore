@@ -66,15 +66,9 @@ html.lenis,html.lenis body {
 
 .loader__logo-overlay {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 250;
-    grid-area: 1 / 1 / -1 / -1;
-    display: grid;
-    position: absolute;
-    pointer-events: none;
-    opacity: 0;
-    --columns: 1;
-    grid-template-columns: repeat(var(--columns),1fr)
+    
 }
 
 .loader__logo-overlay div {

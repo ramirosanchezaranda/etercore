@@ -2056,8 +2056,8 @@ textarea.w-input,textarea.w-select {
 
 :root {
   --color--bg-200: #00070c;
-  --color--primary-100: #d4e1ff;
-  --color--txt-900: #7ea1ff;
+  --color--primary-100: #c7d9ff;
+  --color--txt-900: #618bff;
   --size--gap-200: 24px;
   --color--txt-300: #a4a4a4;
   --color--txt-200: #2a3642;
@@ -2066,7 +2066,7 @@ textarea.w-input,textarea.w-select {
   --color--txt-60: rgba(35, 37, 49, 0.4);
   --size--p-200: 24px;
   --color--stroke-100: #28344e52;
-  --color--stroke-200: #8491ff;
+  --color--stroke-200: #d2d7ff;
   --color--text--90\<deleted\|variable-9c12d270-9fad-8792-2f28-dde44c09c851\>: #dde5ffe6;
   --color--overlay100: #292b3499;
   --color--overlay50: #292b3433;
@@ -2187,7 +2187,7 @@ textarea.w-input,textarea.w-select {
   align-items: center;
   display: flex;
   position: relative;
-  margin-top: 0px;
+  margin-top: -10px;
 }
 
 .nav-item {
@@ -2201,12 +2201,12 @@ textarea.w-input,textarea.w-select {
 }
 
 .nav-item.text100 {
-  color: var(--color--txt-300);
+  color: var(--color--txt-900);
   cursor: pointer
 }
 
 .nav-item.text100:hover {
-  color: var(--color--txt-900)
+  color: var(--color--txt-100)
 }
 
 .nav-item.text100.hide {
@@ -2559,7 +2559,7 @@ textarea.w-input,textarea.w-select {
 }
 
 .contact-item__title.text100 {
-  color: var(--color--txt-60)
+  color: var(--color--txt-100)
 }
 
 .contact-item__value.text100 {
@@ -2730,7 +2730,7 @@ textarea.w-input,textarea.w-select {
 .loader__logo {
   align-items: center;
   width: 20vw;
-  min-width: 400px;
+  min-width: 350px;
   height: 20vh;
   display: flex;
   position: relative;
@@ -2823,7 +2823,7 @@ textarea.w-input,textarea.w-select {
 }
 
 .quote__signature.p100 {
-  color: #292b34;
+  color: #dce2ff;
   margin-bottom: 0
 }
 
@@ -3193,6 +3193,7 @@ textarea.w-input,textarea.w-select {
   width: 100%;
   display: flex;
   position: relative;
+  margin-top: -2%;
 }
 
 @media screen and (max-width: 991px) {
@@ -3401,7 +3402,7 @@ textarea.w-input,textarea.w-select {
 }
 
 .social-item.text100 {
-  color: var(--color--txt-300);
+  color: var(--color--txt-100);
   cursor: pointer;
   position: relative
 }

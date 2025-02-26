@@ -4313,7 +4313,7 @@ img {
     }
 
 
-@media screen and (max-width: 767px) {
+
   button {
     position: relative;
     z-index: 30000;
@@ -4378,7 +4378,73 @@ img {
     visibility: visible !important;
     pointer-events: auto !important;
   }
-  
+
+  @media screen and (max-width: 767px) {
+    button {
+      position: relative;
+      z-index: 30000;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      font-size: 100%;
+      font: inherit;
+      font-size: inherit;
+      width: 25px;
+      height: 25px;
+    }
+    
+    .controls {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9000;
+      display: flex;
+      gap: 1rem;
+      pointer-events: auto;
+    }
+    
+    .controls button {
+      position: relative;
+      margin-bottom: 300%;
+      z-index: 9000;
+      background: rgba(34, 34, 34, 0.7);
+      border: none;
+      color: white;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      transform: translateZ(0);
+      will-change: transform;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    
+    .controls button:hover {
+      background: rgba(34, 34, 34, 0.9);
+      transform: scale(1.1);
+    }
+    
+    .controls button:active {
+      transform: scale(0.9);
+    }
+    
+    .controls button.previous,
+    .controls button.next {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+    
   .icon {
     position: relative;
     width: 20px;
